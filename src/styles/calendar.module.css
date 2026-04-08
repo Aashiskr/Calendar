@@ -1074,9 +1074,8 @@
 /* Responsive */
 @media (max-width: 600px) {
   .pageContainer {
-    padding: var(--space-sm) 6px 80px 6px;
-    justify-content: flex-start;
-    padding-top: 0;
+    padding: var(--space-sm) var(--space-sm) 80px var(--space-sm);
+    justify-content: center;
   }
 
   .pageHeader {
@@ -1089,7 +1088,9 @@
   }
 
   .calendarShell {
-    max-width: 100%;
+    width: 95vw;
+    max-width: 360px;
+    margin: 0 auto;
   }
 
   .wallNail {
@@ -1131,10 +1132,6 @@
 
   .calendarPage {
     border-radius: var(--radius-sm);
-  }
-
-  .heroSection {
-    height: 140px;
   }
 
   .heroOverlay {
@@ -1243,10 +1240,6 @@
   .spiralRing::after {
     width: 3px;
     height: 3px;
-  }
-
-  .heroSection {
-    height: 120px;
   }
 
   .heroMonth {

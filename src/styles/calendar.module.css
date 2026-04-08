@@ -220,33 +220,12 @@
 /* Geometric overlays matching the inspiration image */
 .heroDiagonalOverlay {
   position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.heroDiagonalOverlay::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  right: 0;
-  width: 60%;
-  height: 50%;
-  background: var(--color-primary);
-  opacity: 0.95;
-  clip-path: polygon(0 100%, 100% 20%, 100% 100%);
-}
-
-.heroDiagonalOverlay::before {
-  content: '';
-  position: absolute;
   bottom: -1px;
   left: 0;
-  width: 41%;
-  height: 30%;
-  background: var(--color-primary);
-  opacity: 0.95;
-  clip-path: polygon(0 30%, 100% 100%, 0 100%);
+  right: 0;
+  height: 45%;
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* Year + Month on the diagonal */

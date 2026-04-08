@@ -35,8 +35,12 @@ export default function HeroImage({ month, year, direction }: HeroImageProps) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Diagonal overlay at bottom */}
-      <div className={styles.heroDiagonalOverlay} />
+      {/* Curved SVG overlay at bottom */}
+      <div className={styles.heroDiagonalOverlay}>
+        <svg viewBox="0 0 100 40" preserveAspectRatio="none" style={{ width: '100%', height: '100%', display: 'block' }}>
+          <path d="M 0 15 L 35 32 Q 40 36 45 30 L 75 6 Q 80 2 85 7 L 100 20 L 100 40 L 0 40 Z" fill="var(--color-primary)" opacity="1" />
+        </svg>
+      </div>
 
       {/* Month/Year label on diagonal */}
       <motion.div

@@ -1235,6 +1235,19 @@
   .selectionLabel {
     font-size: 0.7rem;
   }
+
+  .calAIFab {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .calAIWindow {
+    width: calc(100vw - 32px);
+    right: 16px;
+    left: 16px;
+    bottom: 80px;
+    height: 60vh;
+  }
 }
 
 @media (max-width: 400px) {

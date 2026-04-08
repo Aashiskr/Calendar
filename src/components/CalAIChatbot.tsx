@@ -108,8 +108,17 @@ function generateResponse(
     }
     let response = `📝 **Your notes for ${monthName} ${currentYear}** (${notes.length}):\n\n`;
     notes.forEach((note, i) => {
-      const timeStr = note.time ? `🕐 ${note.time} — ` : '';
-      response += `${i + 1}. ${timeStr}${note.content}\n`;
+      let dateTag = '';
+      if (note.rangeStart && note.rangeEnd) {
+        const startStr = new Date(note.rangeStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const endStr = new Date(note.rangeEnd).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        dateTag = startStr === endStr ? `[${startStr}] ` : `[${startStr} - ${endStr}] `;
+      } else if (note.rangeStart) {
+        dateTag = `[${new Date(note.rangeStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}] `;
+      }
+      
+      const timeStr = note.time ? `🕐 ${note.time} ` : '';
+      response += `${i + 1}. **${dateTag}**${timeStr}— ${note.content}\n`;
     });
     return response;
   }

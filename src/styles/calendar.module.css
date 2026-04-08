@@ -1079,98 +1079,195 @@
 /* Responsive */
 @media (max-width: 600px) {
   .pageContainer {
-    padding: var(--space-md) var(--space-sm);
+    padding: var(--space-sm) 6px 80px 6px;
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+
+  .pageHeader {
+    padding: var(--space-sm) var(--space-sm);
+    margin-bottom: 0;
+  }
+
+  .pageTitle {
+    font-size: 1rem;
   }
 
   .calendarShell {
     max-width: 100%;
   }
 
+  .wallNail {
+    height: 28px;
+  }
+
+  .wallNail::before {
+    width: 14px;
+    height: 14px;
+  }
+
+  .wallNail::after {
+    top: 2px;
+    width: 4px;
+    height: 4px;
+  }
+
+  .nailString {
+    height: 18px;
+    top: 10px;
+  }
+
+  .spiralBinding {
+    gap: 6px;
+    padding: 3px 8px;
+    height: 22px;
+  }
+
+  .spiralRing {
+    width: 14px;
+    height: 14px;
+    border-width: 2px;
+  }
+
+  .spiralRing::after {
+    width: 4px;
+    height: 4px;
+  }
+
+  .calendarPage {
+    border-radius: var(--radius-sm);
+  }
+
+  .heroSection {
+    height: 180px;
+  }
+
+  .heroOverlay {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .heroMonth {
+    font-size: 1.3rem;
+  }
+
+  .heroYear {
+    font-size: 0.75rem;
+  }
+
   .calendarBottom {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 
   .notesSection {
     border-right: none;
     border-bottom: 1px solid var(--color-border-subtle);
     max-height: none;
+    padding: var(--space-sm);
   }
 
-  .noteLines {
-    max-height: 140px;
-  }
-
-  .heroMonth {
-    font-size: 1.6rem;
-  }
-
-  .heroYear {
-    font-size: 0.9rem;
-  }
-
-  .spiralBinding {
-    gap: 12px;
-    padding: 4px 20px;
-  }
-
-  .spiralRing {
-    width: 18px;
-    height: 18px;
-    border-width: 2px;
-  }
-
-  .spiralRing::after {
-    width: 6px;
-    height: 6px;
-  }
-
-  .dayCell {
-    height: 34px;
-    font-size: 0.78rem;
-  }
-
-  .weekdayLabel {
-    font-size: 0.6rem;
-  }
-
-  .monthNavLabel {
+  .notesTitle {
     font-size: 0.85rem;
   }
 
-  .selectionSummary {
-    bottom: var(--space-md);
-    padding: var(--space-sm) var(--space-md);
-    gap: var(--space-sm);
-    border-radius: var(--radius-lg);
+  .noteLines {
+    max-height: 100px;
   }
 
-  .selectionLabel {
+  .calendarContent {
+    padding: var(--space-xs);
+  }
+
+  .calendarGrid {
+    padding: 0 var(--space-xs) var(--space-xs);
+  }
+
+  .monthNav {
+    padding: var(--space-xs) 0;
+    margin-bottom: var(--space-xs);
+  }
+
+  .monthNavLabel {
+    font-size: 0.8rem;
+  }
+
+  .monthNavBtn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .todayBtn {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+
+  .weekdayLabel {
+    font-size: 0.58rem;
+    padding: 2px 0;
+  }
+
+  .dayCell {
+    height: 32px;
+    font-size: 0.75rem;
+    border-radius: 3px;
+  }
+
+  .selectionSummary {
+    bottom: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    gap: var(--space-xs);
+    border-radius: var(--radius-md);
     font-size: 0.75rem;
   }
 
-  .pageTitle {
-    font-size: 1.2rem;
+  .selectionLabel {
+    font-size: 0.7rem;
   }
 }
 
 @media (max-width: 400px) {
+  .pageContainer {
+    padding: 4px;
+  }
+
   .spiralBinding {
-    gap: 10px;
-    padding: 4px 16px;
+    gap: 4px;
+    padding: 2px 4px;
   }
 
   .spiralRing {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
   }
 
-  .dayCell {
-    height: 30px;
-    font-size: 0.72rem;
+  .spiralRing::after {
+    width: 3px;
+    height: 3px;
+  }
+
+  .heroSection {
+    height: 150px;
   }
 
   .heroMonth {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+  }
+
+  .heroYear {
+    font-size: 0.65rem;
+  }
+
+  .dayCell {
+    height: 28px;
+    font-size: 0.7rem;
+  }
+
+  .weekdayLabel {
+    font-size: 0.52rem;
+  }
+
+  .monthNavLabel {
+    font-size: 0.75rem;
   }
 
   .selectionSummary {

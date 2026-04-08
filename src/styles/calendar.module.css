@@ -1163,11 +1163,11 @@
   }
 
   .noteLines {
-    max-height: 120px;
+    max-height: 240px;
   }
   
   /* Show only a few lines on mobile */
-  .noteLineEmpty:nth-child(n+3) {
+  .noteLineEmpty:nth-child(n+6) {
     display: none;
   }
 
@@ -1204,8 +1204,8 @@
   }
 
   .dayCell {
-    height: 28px;
-    font-size: 0.75rem;
+    height: 48px;
+    font-size: 0.82rem;
     border-radius: 3px;
   }
 
@@ -1223,10 +1223,6 @@
 }
 
 @media (max-width: 400px) {
-  .pageContainer {
-    padding: 4px;
-  }
-
   .spiralBinding {
     gap: 4px;
     padding: 2px 4px;
@@ -1251,8 +1247,8 @@
   }
 
   .dayCell {
-    height: 24px;
-    font-size: 0.7rem;
+    height: 38px;
+    font-size: 0.78rem;
   }
 
   .weekdayLabel {

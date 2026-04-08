@@ -1139,7 +1139,7 @@
   }
 
   .heroSection {
-    height: 180px;
+    height: 140px;
   }
 
   .heroOverlay {
@@ -1171,7 +1171,12 @@
   }
 
   .noteLines {
-    max-height: 100px;
+    max-height: 85px;
+  }
+  
+  /* Hide excessive empty lines on mobile to save vertical space */
+  .noteLineEmpty:nth-child(n+4) {
+    display: none;
   }
 
   .calendarContent {
@@ -1207,7 +1212,7 @@
   }
 
   .dayCell {
-    height: 32px;
+    height: 28px;
     font-size: 0.75rem;
     border-radius: 3px;
   }
@@ -1246,7 +1251,7 @@
   }
 
   .heroSection {
-    height: 150px;
+    height: 120px;
   }
 
   .heroMonth {
@@ -1258,7 +1263,7 @@
   }
 
   .dayCell {
-    height: 28px;
+    height: 24px;
     font-size: 0.7rem;
   }
 

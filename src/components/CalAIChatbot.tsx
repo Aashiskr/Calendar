@@ -233,7 +233,45 @@ function generateResponse(
     return quotes[Math.floor(Math.random() * quotes.length)];
   }
 
-  // Fallback
+  // Semantic Note Search (Advanced intelligence fallback)
+  // Check if they are asking a question about something they've noted down.
+  const stopWords = ['what', 'when', 'is', 'my', 'the', 'a', 'an', 'are', 'do', 'i', 'have', 'on', 'in', 'at', 'about', 'for', 'to', 'this', 'that', 'there', 'who', 'where', 'how'];
+  const queryWords = lower.split(/[^a-z0-9]/).filter(w => w.length > 2 && !stopWords.includes(w));
+  
+  if (queryWords.length > 0) {
+    let matchingNotes: { note: Note, monthName: string }[] = [];
+    
+    // Search across the entire year
+    for (let m = 0; m < 12; m++) {
+      const mNotes = getNotes(m, currentYear);
+      const matches = mNotes.filter(note => {
+        const content = note.content.toLowerCase();
+        return queryWords.some(word => content.includes(word));
+      });
+      matches.forEach(match => matchingNotes.push({ note: match, monthName: monthData[m].name }));
+    }
+
+    if (matchingNotes.length > 0) {
+      let response = `I found **${matchingNotes.length} note${matchingNotes.length > 1 ? 's' : ''}** related to "${queryWords.join(' ')}":\n\n`;
+      matchingNotes.forEach(({ note, monthName }) => {
+        let dateTag = '';
+        if (note.rangeStart && note.rangeEnd) {
+          const startStr = new Date(note.rangeStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          const endStr = new Date(note.rangeEnd).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          dateTag = startStr === endStr ? `[${startStr}] ` : `[${startStr} - ${endStr}] `;
+        } else if (note.rangeStart) {
+          dateTag = `[${new Date(note.rangeStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}] `;
+        } else {
+          dateTag = `[${monthName}] `;
+        }
+        const timeStr = note.time ? `🕐 ${note.time} ` : '';
+        response += `• **${dateTag}**${timeStr}— ${note.content}\n`;
+      });
+      return response;
+    }
+  }
+
+  // Deep Fallback
   return `I'm not sure I understand that. 🤔 Try asking me about:\n\n📅 **"Events in [month]"**\n📝 **"My notes"**\n📆 **"Today"**\n📊 **"Summary"**\n❓ **"Help"** for all commands\n\nI'll do my best to help!`;
 }
 

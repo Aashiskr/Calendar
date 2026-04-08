@@ -118,7 +118,7 @@ export default function NotesPanel({
             {note.time && <span className={styles.noteLineTime}>{note.time}</span>}
             <span className={styles.noteLineDot} />
             <span className={styles.noteLineContent}>{note.content}</span>
-            {(note.rangeStart || note.rangeEnd) && <span className={styles.noteLineDateRange}>📅 {getNoteDateString(note)}</span>}
+            {(note.rangeStart || note.rangeEnd) && <span className={styles.noteLineDateRange}>{getNoteDateString(note)}</span>}
           </>
         ) : null}
       </div>
@@ -238,10 +238,10 @@ export default function NotesPanel({
                         <div className={styles.noteDetailHeader}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                             {formatTime(note) && (
-                              <span className={styles.noteDetailTime}>🕐 {formatTime(note)}</span>
+                              <span className={styles.noteDetailTime}>{formatTime(note)}</span>
                             )}
                             <span className={styles.noteDetailDate} style={{ fontWeight: 600, color: 'var(--color-primary)' }}>
-                              📅 {getNoteDateString(note)}
+                              {getNoteDateString(note)}
                             </span>
                           </div>
                           <div className={styles.noteDetailActions}>

@@ -15,6 +15,7 @@ interface NotesPanelProps {
   onAdd: (content: string, time: string, rangeStart?: Date, rangeEnd?: Date) => void;
   onUpdate: (noteId: string, content: string) => void;
   onDelete: (noteId: string) => void;
+  externalAddTrigger?: number;
 }
 
 const MAX_CHARS = 500;
@@ -28,6 +29,7 @@ export default function NotesPanel({
   onAdd,
   onUpdate,
   onDelete,
+  externalAddTrigger,
 }: NotesPanelProps) {
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState<'add' | 'view' | 'edit'>('add');
@@ -44,6 +46,12 @@ export default function NotesPanel({
     setShowModal(true);
     setTimeout(() => textareaRef.current?.focus(), 100);
   };
+
+  React.useEffect(() => {
+    if (externalAddTrigger && externalAddTrigger > 0) {
+      handleOpenAdd();
+    }
+  }, [externalAddTrigger]);
 
   const handleOpenView = () => {
     setModalMode('view');
@@ -82,6 +90,19 @@ export default function NotesPanel({
     return '';
   };
 
+  const getNoteDateString = (note: Note) => {
+    if (note.rangeStart && note.rangeEnd) {
+      const startStr = new Date(note.rangeStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const endStr = new Date(note.rangeEnd).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      if (startStr === endStr) return startStr;
+      return `${startStr} - ${endStr}`;
+    }
+    if (note.rangeStart) {
+      return new Date(note.rangeStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+    return new Date(note.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
+
   // Build the note lines for the left sidebar
   const noteLines = [];
   for (let i = 0; i < Math.max(EMPTY_LINES, notes.length); i++) {
@@ -97,6 +118,7 @@ export default function NotesPanel({
             {note.time && <span className={styles.noteLineTime}>{note.time}</span>}
             <span className={styles.noteLineDot} />
             <span className={styles.noteLineContent}>{note.content}</span>
+            {(note.rangeStart || note.rangeEnd) && <span className={styles.noteLineDateRange}>📅 {getNoteDateString(note)}</span>}
           </>
         ) : null}
       </div>
@@ -218,10 +240,8 @@ export default function NotesPanel({
                             {formatTime(note) && (
                               <span className={styles.noteDetailTime}>🕐 {formatTime(note)}</span>
                             )}
-                            <span className={styles.noteDetailDate}>
-                              {new Date(note.updatedAt).toLocaleDateString('en-US', {
-                                month: 'short', day: 'numeric',
-                              })}
+                            <span className={styles.noteDetailDate} style={{ fontWeight: 600, color: 'var(--color-primary)' }}>
+                              📅 {getNoteDateString(note)}
                             </span>
                           </div>
                           <div className={styles.noteDetailActions}>

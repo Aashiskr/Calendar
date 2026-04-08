@@ -56,6 +56,9 @@ export default function CalendarShell() {
   const [direction, setDirection] = useState(0);
   const prevMonthRef = useRef(currentMonth);
 
+  // Trigger to open notes modal from date selection summary
+  const [addNoteTrigger, setAddNoteTrigger] = useState(0);
+
   useEffect(() => {
     if (currentMonth !== prevMonthRef.current) {
       setDirection(currentMonth > prevMonthRef.current ? 1 : -1);
@@ -181,6 +184,7 @@ export default function CalendarShell() {
                 onAdd={handleAddNote}
                 onUpdate={handleUpdateNote}
                 onDelete={handleDeleteNote}
+                externalAddTrigger={addNoteTrigger}
               />
 
               {/* Calendar Grid (right) */}
@@ -215,7 +219,7 @@ export default function CalendarShell() {
       <SelectionSummary
         rangeLabel={selectionState === 'selected' ? rangeLabel : ''}
         onClear={clearSelection}
-        onAddNote={() => {}}
+        onAddNote={() => setAddNoteTrigger((prev) => prev + 1)}
       />
 
       {/* Cal AI Chatbot */}

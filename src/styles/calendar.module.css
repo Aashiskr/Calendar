@@ -1074,13 +1074,13 @@
 /* Responsive */
 @media (max-width: 600px) {
   .pageContainer {
-    padding: var(--space-sm) var(--space-sm) 80px var(--space-sm);
+    padding: 20px 10px 100px 10px;
     justify-content: center;
   }
 
   .pageHeader {
     padding: var(--space-sm) var(--space-sm);
-    margin-bottom: 0;
+    margin-bottom: var(--space-lg);
   }
 
   .pageTitle {
@@ -1088,8 +1088,8 @@
   }
 
   .calendarShell {
-    width: 95vw;
-    max-width: 360px;
+    width: 90vw;
+    max-width: 330px;
     margin: 0 auto;
   }
 
